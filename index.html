@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniela Másmela Habib — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --page-w: 612px;
+      --page-h: 792px;
+      --scale: min(calc(100vw / var(--page-w)), 2.4);
+    }
+
+    body {
+      background: #FBFAF5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-synthesis: none;
+    }
+
+    .page-wrapper {
+      width: 100vw;
+      height: calc(var(--page-h) * var(--scale));
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: var(--page-w);
+      height: var(--page-h);
+      background: #FBFAF5;
+      position: relative;
+      overflow: clip;
+      transform: scale(var(--scale));
+      transform-origin: top center;
+    }
+
+    .mobile, .desktop { display: none; }
+
+    .sans { font-family: "Instrument Sans", system-ui, sans-serif; }
+    .serif { font-family: "Instrument Serif", system-ui, sans-serif; }
+
+    /* Photo — full-height left column */
+    .photo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 206px;
+      height: 792px;
+      background-image: url("portrait.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Header — left (over photo) */
+    .name {
+      position: absolute;
+      top: 16px;
+      left: 22px;
+      width: 184px;
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 10px;
+      color: #fff;
+    }
+    .contact {
+      position: absolute;
+      top: 26px;
+      left: 22px;
+      width: 184px;
+      font-size: 8px;
+      line-height: 10px;
+      color: #fff;
+      padding-top: 10px;
+    }
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header — right */
+    .built-for {
+      position: absolute;
+      top: 16px;
+      left: 406px;
+      width: 184px;
+      text-align: right;
+      font-size: 8px;
+      line-height: 10px;
+      color: #000;
+    }
+
+    /* Right column — content */
+    .right-col {
+      position: absolute;
+      top: 72px;
+      left: 214px;
+      width: 376px;
+      height: 705px;
+      padding-left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .bio {
+      font-size: 15px;
+      line-height: 18px;
+      color: #000;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+    }
+    .stats-row {
+      display: flex;
+      gap: 8px;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 84px;
+      flex-shrink: 0;
+    }
+    .stat-wide { flex: 1; width: auto; }
+    .stat-number {
+      font-size: 24px;
+      line-height: 30px;
+      color: #000;
+    }
+    .stat-label {
+      font-size: 10px;
+      line-height: 12px;
+      color: #000;
+    }
+
+    /* Competencies */
+    .competencies {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .comp-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .comp-title {
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 10px;
+      color: #000;
+    }
+    .comp-desc {
+      font-size: 10px;
+      line-height: 12px;
+      color: #000;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: auto;
+      display: flex;
+      align-items: end;
+      gap: 16px;
+    }
+    .footer-left {
+      flex: 1;
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 10px;
+      color: #000;
+    }
+    .footer-right {
+      font-size: 8px;
+      line-height: 10px;
+      color: #000;
+      text-align: right;
+    }
+
+    /* Experience — over photo */
+    .experience {
+      position: absolute;
+      top: 377px;
+      left: 22px;
+      width: 184px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .exp-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 184px;
+    }
+    .exp-header {
+      display: flex;
+      gap: 4px;
+      padding-right: 12px;
+    }
+    .exp-title {
+      flex: 1;
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 10px;
+      color: #fff;
+    }
+    .exp-date {
+      font-size: 8px;
+      line-height: 10px;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .exp-company {
+      font-size: 10px;
+      line-height: 12px;
+      color: #fff;
+    }
+
+    /* Skills — over photo, bottom-aligned */
+    .skills {
+      position: absolute;
+      top: 546px;
+      left: 22px;
+      width: 184px;
+      height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      gap: 8px;
+    }
+    .skill-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 184px;
+    }
+    .skill-title {
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 10px;
+      color: #fff;
+    }
+    .skill-list {
+      font-size: 10px;
+      line-height: 12px;
+      color: #fff;
+    }
+
+    @media print {
+      :root { --scale: 1; }
+      body { background: none; }
+      .page-wrapper { width: var(--page-w); height: var(--page-h); overflow: visible; display: block; }
+      .page { transform: none; }
+      .mobile, .desktop { display: none !important; }
+    }
+
+    /* Desktop layout (≥1100px): landscape, photo left + content right */
+    @media (min-width: 1100px) {
+      .page-wrapper { display: none; }
+      .desktop {
+        display: grid;
+        grid-template-columns: minmax(360px, 33vw) 1fr;
+        min-height: 100vh;
+      }
+
+      .d-photo {
+        position: relative;
+        background-image: url("portrait.png");
+        background-size: cover;
+        background-position: center;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+      }
+      .d-photo-top, .d-photo-mid, .d-photo-bot {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+        font-family: "Instrument Sans", system-ui, sans-serif;
+      }
+      .d-name { font-weight: 600; font-size: 14px; line-height: 18px; margin-bottom: 14px; }
+      .d-contact { font-size: 13px; line-height: 18px; }
+      .d-contact a { color: inherit; text-decoration: none; }
+      .d-contact a:hover { text-decoration: underline; }
+
+      .d-photo-mid { margin-top: auto; padding-top: 48px; display: flex; flex-direction: column; gap: 18px; }
+      .d-exp-item { display: flex; flex-direction: column; gap: 6px; }
+      .d-exp-header { display: flex; gap: 8px; }
+      .d-exp-title { flex: 1; font-weight: 600; font-size: 12px; line-height: 14px; color: #fff; }
+      .d-exp-date { font-size: 12px; line-height: 14px; color: rgba(255,255,255,0.5); text-align: right; }
+      .d-exp-company { font-family: "Instrument Serif", system-ui, sans-serif; font-size: 14px; line-height: 18px; color: #fff; }
+
+      .d-photo-bot { margin-top: 48px; display: flex; flex-direction: column; gap: 14px; }
+      .d-skill-item { display: flex; flex-direction: column; gap: 5px; }
+      .d-skill-title { font-weight: 600; font-size: 12px; line-height: 14px; color: #fff; }
+      .d-skill-list { font-family: "Instrument Serif", system-ui, sans-serif; font-size: 13px; line-height: 16px; color: #fff; }
+
+      .d-content {
+        position: relative;
+        padding: 40px 48px 40px 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      .d-built {
+        align-self: flex-end;
+        text-align: right;
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 18px;
+        color: #000;
+        white-space: pre-line;
+      }
+      .d-bio {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-size: 26px;
+        line-height: 32px;
+        color: #000;
+        max-width: 1000px;
+      }
+      .d-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+      .d-stat { display: flex; flex-direction: column; gap: 6px; flex: 1 1 120px; }
+      .d-stat-num { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 40px; line-height: 44px; color: #000; }
+      .d-stat-wide { flex: 1.6 1 200px; }
+      .d-stat-label { font-family: "Instrument Serif", system-ui, sans-serif; font-size: 13px; line-height: 16px; color: #000; }
+
+      .d-comps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+      .d-comp-item { display: flex; flex-direction: column; gap: 6px; }
+      .d-comp-title { font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600; font-size: 12px; line-height: 14px; color: #000; }
+      .d-comp-desc { font-family: "Instrument Serif", system-ui, sans-serif; font-size: 14px; line-height: 18px; color: #000; }
+
+      .d-footer { margin-top: auto; display: flex; align-items: end; gap: 16px; }
+      .d-footer-cta { flex: 1; font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600; font-size: 12px; line-height: 14px; color: #000; }
+      .d-footer-date { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 12px; line-height: 14px; color: rgba(0,0,0,0.5); }
+    }
+
+    /* Mobile layout (<700px): stacked single column */
+    @media (max-width: 700px) {
+      .page-wrapper { display: none; }
+      .mobile { display: flex; flex-direction: column; max-width: 480px; margin: 0 auto; }
+
+      .m-hero {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 390 / 460;
+        background-image: url("portrait.png");
+        background-size: cover;
+        background-position: center;
+      }
+      .m-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 100%);
+      }
+      .m-hero-text {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        color: #fff;
+        z-index: 1;
+      }
+      .m-name { font-family: "Instrument Sans", system-ui, sans-serif; font-weight: 600; font-size: 13px; line-height: 16px; }
+      .m-contact { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 12px; line-height: 16px; }
+      .m-contact a { color: inherit; text-decoration: none; }
+      .m-contact a:hover { text-decoration: underline; }
+
+      .m-body { display: flex; flex-direction: column; gap: 28px; padding: 28px 24px 32px; }
+      .m-built {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-size: 11px; line-height: 14px; color: #000;
+        white-space: pre-line;
+      }
+      .m-bio {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-size: 17px; line-height: 22px; color: #000;
+      }
+
+      .m-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+      .m-stat-wide { grid-column: 1 / -1; }
+      .m-stat-num { font-family: "Instrument Sans", system-ui, sans-serif; font-size: 32px; line-height: 36px; color: #000; }
+      .m-stat-label { font-family: "Instrument Serif", system-ui, sans-serif; font-size: 12px; line-height: 14px; color: #000; margin-top: 4px; }
+
+      .m-section {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0,0,0,0.15);
+      }
+      .m-section-title {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-weight: 600; font-size: 11px; line-height: 14px; color: #000;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .m-exp-item, .m-comp-item, .m-skill-item { display: flex; flex-direction: column; gap: 4px; }
+      .m-exp-header { display: flex; gap: 8px; }
+      .m-exp-title, .m-comp-title, .m-skill-title {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-weight: 600; font-size: 11px; line-height: 14px; color: #000;
+        flex: 1;
+      }
+      .m-exp-date {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-size: 11px; line-height: 14px; color: rgba(0,0,0,0.5);
+        flex-shrink: 0;
+      }
+      .m-exp-company, .m-comp-desc, .m-skill-list {
+        font-family: "Instrument Serif", system-ui, sans-serif;
+        font-size: 13px; line-height: 16px; color: #000;
+      }
+
+      .m-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0,0,0,0.15);
+      }
+      .m-footer-cta {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-weight: 600; font-size: 11px; line-height: 14px; color: #000;
+      }
+      .m-footer-date {
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        font-size: 11px; line-height: 14px; color: rgba(0,0,0,0.5);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile layout -->
+  <div class="mobile">
+    <div class="m-hero">
+      <div class="m-hero-text">
+        <div class="m-name">Daniela Másmela Habib</div>
+        <div class="m-contact">
+          <a href="mailto:damasmelahabib@gmail.com">damasmelahabib@gmail.com</a><br>
+          <a href="https://wa.me/573192282559" target="_blank" rel="noopener">+57 319 228 2559</a> · Medellín, Colombia
+        </div>
+      </div>
+    </div>
+
+    <div class="m-body">
+      <div class="m-built">Built for Creator Relations Representative
+B2B - Creator Experience · Clips4Sale</div>
+
+      <div class="m-bio">I'm an independent creator relations specialist, community builder, and event producer based in Medellín, Colombia. With more than ten years of experience in the adult content industry, I combine a performer-first approach with strong operational skills to expand the talent I work with. My work includes scouting, onboarding, platform training, multi-channel community development, industry event organization, and creating on-brand merchandise.</div>
+
+      <div class="m-stats">
+        <div><div class="m-stat-num">13</div><div class="m-stat-label">years inside the adult content industry.</div></div>
+        <div><div class="m-stat-num">100+</div><div class="m-stat-label">creators onboarded.</div></div>
+        <div><div class="m-stat-num">15</div><div class="m-stat-label">creators under active management.</div></div>
+        <div><div class="m-stat-num">5</div><div class="m-stat-label">industry events produced from zero.</div></div>
+        <div><div class="m-stat-num">20+</div><div class="m-stat-label">creators recruited.</div></div>
+        <div><div class="m-stat-num">60+</div><div class="m-stat-label">guests at flagships.</div></div>
+        <div class="m-stat-wide"><div class="m-stat-num">15K—100K</div><div class="m-stat-label">follower audiences managed.</div></div>
+      </div>
+
+      <div class="m-section">
+        <div class="m-section-title">Experience</div>
+        <div class="m-exp-item">
+          <div class="m-exp-header"><div class="m-exp-title">Founder</div><div class="m-exp-date">2019 — Present</div></div>
+          <div class="m-exp-company">Zazy Studio Lab</div>
+        </div>
+        <div class="m-exp-item">
+          <div class="m-exp-header"><div class="m-exp-title">Agency Lead</div><div class="m-exp-date">2020 — 2025</div></div>
+          <div class="m-exp-company">UnicornTV</div>
+        </div>
+        <div class="m-exp-item">
+          <div class="m-exp-header"><div class="m-exp-title">Latam Social Media Manager</div><div class="m-exp-date">2018 — 2021</div></div>
+          <div class="m-exp-company">FanCentro</div>
+        </div>
+        <div class="m-exp-item">
+          <div class="m-exp-header"><div class="m-exp-title">Model's Manager</div><div class="m-exp-date">2013 — 2018</div></div>
+          <div class="m-exp-company">AJ Studios · Co-built first LalExpo</div>
+        </div>
+      </div>
+
+      <div class="m-section">
+        <div class="m-section-title">Competencies</div>
+        <div class="m-comp-item"><div class="m-comp-title">Prospecting &amp; Onboarding</div><div class="m-comp-desc">I've identified niche opportunities, signed, and fully activated 100+ performers across Zazy Studio Lab, FanCentro, and AJ Studios. I own the complete acquisition funnel from cold outreach on Telegram, Instagram, X, and Snapchat through sign-up, platform setup, first upload, and first payout.</div></div>
+        <div class="m-comp-item"><div class="m-comp-title">Platform &amp; Backend Fluency</div><div class="m-comp-desc">Hands-on operator since 2014 across Clips4Sale, OnlyFans, Fansly, ManyVids, FanCentro, Chaturbate, MyFreeCams, LiveJasmine, Flirt4Free, Streamate, and Pornhub. I routinely resolve store activations, payout configurations, and upload blockers on behalf of my partners.</div></div>
+        <div class="m-comp-item"><div class="m-comp-title">Multi-channel Communication</div><div class="m-comp-desc">I sustain daily engagement across Instagram, X, TikTok, YouTube, Telegram, and Snapchat. I script, film, edit, publish, and report in-house. My performer-facing voice was refined through three years authoring educational content for FanCentro's creator base. English at C1/C2 professional working proficiency; Spanish native.</div></div>
+        <div class="m-comp-item"><div class="m-comp-title">Industry Events &amp; Scouting</div><div class="m-comp-desc">I built HOUSE of FC and Unikorn Mansion from the ground up, and co-organized the first edition of LaLexpo, Latin America's benchmark adult-industry expo. I operate my own Cricut and 3D printer, producing on-brand merchandise, signage, and activations without external creative dependencies. I'm fully available for the evening, weekend, and travel commitments that industry events require.</div></div>
+        <div class="m-comp-item"><div class="m-comp-title">Distributed &amp; Async Collaboration</div><div class="m-comp-desc">I've delivered creator programs alongside teammates across Latin America, Europe, Russia, Ukraine, and Asia. I'm proven in remote-first workflows, asynchronous hand-offs across time zones, and performer support tailored to each individual's schedule. An aligned fit for a US-based platform serving a global stars community.</div></div>
+        <div class="m-comp-item"><div class="m-comp-title">Self-starter, Test &amp; Learn</div><div class="m-comp-desc">I founded Zazy Studio Lab in 2019 and scaled it into a full-stack management agency covering niche research, content libraries, paid-platform management, custom reporting, and chat operations. Scrum-certified. I propose hypotheses, launch experiments, track outcomes, and report findings.</div></div>
+      </div>
+
+      <div class="m-section">
+        <div class="m-section-title">Skills</div>
+        <div class="m-skill-item"><div class="m-skill-title">Platforms Operated</div><div class="m-skill-list">Clips4Sale · OnlyFans · Fansly · ManyVids · FanCentro · Chaturbate · MFC · LiveJasmine · Flirt4Free · Pornhub</div></div>
+        <div class="m-skill-item"><div class="m-skill-title">Messaging &amp; Social</div><div class="m-skill-list">Instagram · X · TikTok · YouTube · Telegram · Snapchat</div></div>
+        <div class="m-skill-item"><div class="m-skill-title">Stack &amp; Method</div><div class="m-skill-list">Slack · Notion · Jira · Airtable · Canva · Figma · Later · Linktree · Beacons · Meta Business · GA · TikTok Studio</div></div>
+        <div class="m-skill-item"><div class="m-skill-title">Production</div><div class="m-skill-list">Photo &amp; Video · Cricut · 3D Printing · Merch &amp; Event built-outs from zero.</div></div>
+      </div>
+
+      <div class="m-footer">
+        <div class="m-footer-cta">Ready to Onboard · Ready to Travel · Ready to Build</div>
+        <div class="m-footer-date">April 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop layout -->
+  <div class="desktop">
+    <aside class="d-photo">
+      <div class="d-photo-top">
+        <div class="d-name">Daniela Másmela Habib</div>
+        <div class="d-contact">
+          <a href="mailto:damasmelahabib@gmail.com">damasmelahabib@gmail.com</a><br>
+          <a href="https://wa.me/573192282559" target="_blank" rel="noopener">+57 319 228 2559</a><br>
+          Medellín, Colombia
+        </div>
+      </div>
+
+      <div class="d-photo-mid">
+        <div class="d-exp-item">
+          <div class="d-exp-header"><div class="d-exp-title">Founder</div><div class="d-exp-date">2019 — Present</div></div>
+          <div class="d-exp-company">Zazy Studio Lab</div>
+        </div>
+        <div class="d-exp-item">
+          <div class="d-exp-header"><div class="d-exp-title">Agency Lead</div><div class="d-exp-date">2020 — 2025</div></div>
+          <div class="d-exp-company">UnicornTV</div>
+        </div>
+        <div class="d-exp-item">
+          <div class="d-exp-header"><div class="d-exp-title">Latam Social Media Manager</div><div class="d-exp-date">2018 — 2021</div></div>
+          <div class="d-exp-company">FanCentro</div>
+        </div>
+        <div class="d-exp-item">
+          <div class="d-exp-header"><div class="d-exp-title">Model's Manager</div><div class="d-exp-date">2013 — 2018</div></div>
+          <div class="d-exp-company">AJ Studios · Co-built first LalExpo</div>
+        </div>
+      </div>
+
+      <div class="d-photo-bot">
+        <div class="d-skill-item"><div class="d-skill-title">Platforms Operated</div><div class="d-skill-list">Clips4Sale · OnlyFans · Fansly · ManyVids · FanCentro · Chaturbate · MFC · LiveJasmine · Flirt4Free · Pornhub</div></div>
+        <div class="d-skill-item"><div class="d-skill-title">Stack &amp; Method</div><div class="d-skill-list">Slack · Notion · Jira · Airtable · Canva · Figma · Later · Linktree · Beacons · Meta Business · GA · TikTok Studio</div></div>
+      </div>
+    </aside>
+
+    <main class="d-content">
+      <div class="d-built">Built for Creator Relations Representative
+B2B - Creator Experience
+Clips4Sale</div>
+
+      <div class="d-bio">I'm an independent creator relations specialist, community builder, and event producer based in Medellín, Colombia. With more than ten years of experience in the adult content industry, I combine a performer-first approach with strong operational skills to expand the talent I work with.</div>
+
+      <div class="d-stats">
+        <div class="d-stat"><div class="d-stat-num">13</div><div class="d-stat-label">years inside the adult content industry.</div></div>
+        <div class="d-stat"><div class="d-stat-num">100+</div><div class="d-stat-label">creators onboarded.</div></div>
+        <div class="d-stat"><div class="d-stat-num">15</div><div class="d-stat-label">creators under active management.</div></div>
+        <div class="d-stat"><div class="d-stat-num">20+</div><div class="d-stat-label">creators recruited.</div></div>
+        <div class="d-stat"><div class="d-stat-num">60+</div><div class="d-stat-label">guests at flagships.</div></div>
+        <div class="d-stat d-stat-wide"><div class="d-stat-num">15K—100K</div><div class="d-stat-label">follower audiences managed.</div></div>
+      </div>
+
+      <div class="d-comps">
+        <div class="d-comp-item"><div class="d-comp-title">Prospecting &amp; Onboarding</div><div class="d-comp-desc">I've identified niche opportunities, signed, and fully activated 100+ performers across Zazy Studio Lab, FanCentro, and AJ Studios. I own the complete acquisition funnel from cold outreach on Telegram, Instagram, X, and Snapchat through sign-up, platform setup, first upload, and first payout.</div></div>
+        <div class="d-comp-item"><div class="d-comp-title">Platform &amp; Backend Fluency</div><div class="d-comp-desc">Hands-on operator since 2014 across Clips4Sale, OnlyFans, Fansly, ManyVids, FanCentro, Chaturbate, MyFreeCams, LiveJasmine, Flirt4Free, Streamate, and Pornhub. I routinely resolve store activations, payout configurations, and upload blockers on behalf of my talent.</div></div>
+        <div class="d-comp-item"><div class="d-comp-title">Multi-channel Communication</div><div class="d-comp-desc">I sustain daily engagement across Instagram, X, TikTok, YouTube, Telegram, and Snapchat. I script, film, edit, publish, and report in-house. My performer-facing voice was refined through three years authoring educational content for FanCentro's creator base. English at C1/C2 professional working proficiency; Spanish native.</div></div>
+        <div class="d-comp-item"><div class="d-comp-title">Industry Events &amp; Scouting</div><div class="d-comp-desc">I built HOUSE of FC and Unikorn Mansion from the ground up, and co-organized the first edition of LaLexpo, Latin America's benchmark adult-industry expo. I operate my own Cricut and 3D printer, producing on-brand merchandise, signage, and activations without external creative dependencies. I'm fully available for the evening, weekend, and travel commitments that industry events require.</div></div>
+        <div class="d-comp-item"><div class="d-comp-title">Distributed &amp; Async Collaboration</div><div class="d-comp-desc">I've delivered creator programs alongside teammates across Latin America, Europe, Russia, Ukraine, and Asia. I'm proven in remote-first workflows, asynchronous hand-offs across time zones, and performer support tailored to each individual's schedule. An aligned fit for a US-based platform serving a global stars community.</div></div>
+        <div class="d-comp-item"><div class="d-comp-title">Self-starter, Test &amp; Learn</div><div class="d-comp-desc">I founded Zazy Studio Lab in 2019 and scaled it into a full-stack management agency covering niche research, content libraries, paid-platform management, custom reporting, and chat operations. Scrum-certified. I propose hypotheses, launch experiments, track outcomes, and report findings.</div></div>
+      </div>
+
+      <div class="d-footer">
+        <div class="d-footer-cta">Ready to Onboard · Ready to Travel · Ready to Build</div>
+        <div class="d-footer-date">April 2026</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="page-wrapper">
+  <div class="page">
+
+    <!-- Photo -->
+    <div class="photo"></div>
+
+    <!-- Header (over photo) -->
+    <div class="name sans">Daniela Másmela Habib</div>
+    <div class="contact sans">
+      <a href="mailto:damasmelahabib@gmail.com">damasmelahabib@gmail.com</a><br>
+      <a href="https://wa.me/573192282559" target="_blank" rel="noopener">+57 319 228 2559</a><br>
+      Medellín, Colombia
+    </div>
+
+    <!-- Header right -->
+    <div class="built-for sans">
+      Built for Creator Relations Representative<br>
+      B2B - Creator Experience<br>
+      Clips4Sale
+    </div>
+
+    <!-- Right column -->
+    <div class="right-col">
+      <div class="bio sans">
+        I'm an independent creator relations specialist, community builder, and event producer based in Medellín, Colombia. With more than ten years of experience in the adult content industry, I combine a performer-first approach with strong operational skills to expand the talent I work with. My work includes scouting, onboarding, platform training, multi-channel community development, industry event organization, and creating on-brand merchandise.
+      </div>
+
+      <div class="stats">
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-number sans">13</div>
+            <div class="stat-label serif">years inside the adult content industry.</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number sans">100+</div>
+            <div class="stat-label serif">creators onboarded.</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number sans">15</div>
+            <div class="stat-label serif">creators under active management.</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number sans">5</div>
+            <div class="stat-label serif">industry events produced from zero.</div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-number sans">20+</div>
+            <div class="stat-label serif">creators recruited.</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number sans">60+</div>
+            <div class="stat-label serif">guests at flagships.</div>
+          </div>
+          <div class="stat stat-wide">
+            <div class="stat-number sans">15K—100K</div>
+            <div class="stat-label serif">follower audiences managed.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="competencies">
+        <div class="comp-item">
+          <div class="comp-title sans">Prospecting &amp; Onboarding</div>
+          <div class="comp-desc serif">I've identified niche opportunities, signed, and fully activated 100+ performers across Zazy Studio Lab, FanCentro, and AJ Studios. I own the complete acquisition funnel from cold outreach on Telegram, Instagram, X, and Snapchat through sign-up, platform setup, first upload, and first payout.</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title sans">Platform &amp; Backend Fluency</div>
+          <div class="comp-desc serif">Hands-on operator since 2014 across Clips4Sale, OnlyFans, Fansly, ManyVids, FanCentro, Chaturbate, MyFreeCams, LiveJasmine, Flirt4Free, Streamate, and Pornhub. I routinely resolve store activations, payout configurations, and upload blockers on behalf of my talent.</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title sans">Multi-channel Communication</div>
+          <div class="comp-desc serif">I sustain daily engagement across Instagram, X, TikTok, YouTube, Telegram, and Snapchat. I script, film, edit, publish, and report in-house. My performer-facing voice was refined through three years authoring educational content for FanCentro's creator base. English at C1/C2 professional working proficiency; Spanish native.</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title sans">Industry Events &amp; Scouting</div>
+          <div class="comp-desc serif">I built HOUSE of FC and Unikorn Mansion from the ground up, and co-organized the first edition of LaLexpo, Latin America's benchmark adult-industry expo. I operate my own Cricut and 3D printer, producing on-brand merchandise, signage, and activations without external creative dependencies. I'm fully available for the evening, weekend, and travel commitments that industry events require.</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title sans">Distributed &amp; Async Collaboration</div>
+          <div class="comp-desc serif">I've delivered creator programs alongside teammates across Latin America, Europe, Russia, Ukraine, and Asia. I'm proven in remote-first workflows, asynchronous hand-offs across time zones, and performer support tailored to each individual's schedule. An aligned fit for a US-based platform serving a global stars community.</div>
+        </div>
+        <div class="comp-item">
+          <div class="comp-title sans">Self-starter, Test &amp; Learn</div>
+          <div class="comp-desc serif">I founded Zazy Studio Lab in 2019 and scaled it into a full-stack management agency covering niche research, content libraries, paid-platform management, custom reporting, and chat operations. Scrum-certified. I propose hypotheses, launch experiments, track outcomes, and report findings.</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-left sans">Ready to Onboard · Ready to Travel · Ready to Build</div>
+        <div class="footer-right sans">April 2026</div>
+      </div>
+    </div>
+
+    <!-- Experience (over photo) -->
+    <div class="experience">
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title sans">Founder</div>
+          <div class="exp-date sans">2019 — Present</div>
+        </div>
+        <div class="exp-company serif">Zazy Studio Lab</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title sans">Agency Lead</div>
+          <div class="exp-date sans">2020 — 2025</div>
+        </div>
+        <div class="exp-company serif">UnicornTV</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title sans">Latam Social Media Manager</div>
+          <div class="exp-date sans">2018 — 2021</div>
+        </div>
+        <div class="exp-company serif">FanCentro</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title sans">Model's Manager</div>
+          <div class="exp-date sans">2013 — 2018</div>
+        </div>
+        <div class="exp-company serif">AJ Studios · Co-built first LalExpo</div>
+      </div>
+    </div>
+
+    <!-- Skills (over photo, bottom) -->
+    <div class="skills">
+      <div class="skill-group">
+        <div class="skill-title sans">Platforms Operated</div>
+        <div class="skill-list serif">Clips4Sale · OnlyFans · Fansly · ManyVids · FanCentro · Chaturbate · MFC · LiveJasmine · Flirt4Free · Pornhub</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-title sans">Messaging &amp; Social</div>
+        <div class="skill-list serif">Instagram · X · TikTok · YouTube · Telegram · Snapchat</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-title sans">Stack &amp; Method</div>
+        <div class="skill-list serif">Slack · Notion · Jira · Airtable · Canva · Figma · Later · Linktree · Beacons · Meta Business · GA · TikTok Studio</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-title sans">Production</div>
+        <div class="skill-list serif">Photo &amp; Video · Cricut · 3D Printing · Merch &amp; Event built-outs from zero.</div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</body>
+</html>
